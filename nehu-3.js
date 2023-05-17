@@ -419,12 +419,12 @@ class EmployeeForm extends LitElement {
         <label for="ccity">City:*</label>
         <select id="ccity" @change=${this.handleInputChange}>
           <option value="">Select a city</option>
-          <option value="city1">Banglore</option>
-          <option value="city2">Hyderabad</option>
-          <option value="city3">Mumbai</option>
-          <option value="city1">Delhi</option>
-          <option value="city2">Chennai</option>
-          <option value="city3">Kolkata</option>
+          <option value="Banglore">Banglore</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Kolkata">Kolkata</option>
           
         </select>
         ${this.errorMessages.ccity ? html`<p>${this.errorMessages.ccity}</p>` : ''}
@@ -434,12 +434,12 @@ class EmployeeForm extends LitElement {
         <label for="cstate">State:*</label>
         <select id="cstate" @change=${this.handleInputChange}>
           <option value="">Select a state</option>
-          <option value="city1">Karnataka</option>
-          <option value="city2">Telangana</option>
-          <option value="city3">Maharashtra</option>
-          <option value="city1">Uttar Pradesh</option>
-          <option value="city2">Tamil Nadu</option>
-          <option value="city3">West Bengal</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="West Bengal">West Bengal</option>
           
           
         </select>
@@ -450,9 +450,9 @@ class EmployeeForm extends LitElement {
         <label for="ccountry">Country:*</label>
         <select id="ccountry" @change=${this.handleInputChange}>
           <option value="">Select a Country</option>
-          <option value="city1">India</option>
-          <option value="city2">US</option>
-          <option value="city3">UK</option>
+          <option value="India">India</option>
+          <option value="US">US</option>
+          <option value="UK">UK</option>
           
         </select>
         ${this.errorMessages.ccountry ? html`<p>${this.errorMessages.ccountry}</p>` : ''}
@@ -512,12 +512,12 @@ class EmployeeForm extends LitElement {
         <label for="pcity">Permanent City:*</label>
         <select id="pcity" @change=${this.handleInputChange}>
         <option value="">Select a city</option>
-        <option value="city1">Banglore</option>
-        <option value="city2">Hyderabad</option>
-        <option value="city3">Mumbai</option>
-        <option value="city1">Delhi</option>
-        <option value="city2">Chennai</option>
-        <option value="city3">Kolkata</option>
+        <option value="Banglore">Banglore</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Kolkata">Kolkata</option>
           
         </select>
         ${this.errorMessages.pcity ? html`<p>${this.errorMessages.pcity}</p>` : ''}
@@ -527,12 +527,12 @@ class EmployeeForm extends LitElement {
         <label for="pstate">Permanent State:*</label>
         <select id="pstate" @change=${this.handleInputChange}>
         <option value="">Select a state</option>
-        <option value="city1">Karnataka</option>
-        <option value="city2">Telangana</option>
-        <option value="city3">Maharashtra</option>
-        <option value="city1">Uttar Pradesh</option>
-        <option value="city2">Tamil Nadu</option>
-        <option value="city3">West Bengal</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="West Bengal">West Bengal</option>
         </select>
         ${this.errorMessages.pstate ? html`<p>${this.errorMessages.pstate}</p>` : ''}
 
@@ -541,9 +541,9 @@ class EmployeeForm extends LitElement {
         <label for="pcountry">Permanent Country:*</label>
         <select id="pcountry" @change=${this.handleInputChange}>
         <option value="">Select a Country</option>
-        <option value="city1">India</option>
-        <option value="city2">US</option>
-        <option value="city3">UK</option>
+        <option value="India">India</option>
+        <option value="US">US</option>
+        <option value="UK">UK</option>
           
         </select>
         ${this.errorMessages.pcountry ? html`<p>${this.errorMessages.pcountry}</p>` : ''}
@@ -751,34 +751,34 @@ class EmployeeForm extends LitElement {
         localStorage.setItem('employees', JSON.stringify(storedData));
       
         // Reset form values
-        this.fullName = '';
-        this.employeeCode = '';
-        this.officialEmail = '';
-        this.personalEmail = '';
-        this.designation = '';
-        this.department = '';
-        this.primaryContact = '';
-        this.secondaryContact = '';
-        this.emergencyContact = '';
-        this.caddressLine1 = '';
-        this.caddressLine2 = '';
-        this.clandMark = '';
-        this.czipCode = '';
-        this.paddressLine1 = '';
-        this.paddressLine2 = '';
-        this.plandMark = '';
-        this.pzipCode = '';
-        this.ccity = '';
-        this.cstate = '';
-        this.ccountry = '';
-        this.pcity = '';
-        this.pstate = '';
-        this.pcountry = '';
+        // this.fullName = '';
+        // this.employeeCode = '';
+        // this.officialEmail = '';
+        // this.personalEmail = '';
+        // this.designation = '';
+        // this.department = '';
+        // this.primaryContact = '';
+        // this.secondaryContact = '';
+        // this.emergencyContact = '';
+        // this.caddressLine1 = '';
+        // this.caddressLine2 = '';
+        // this.clandMark = '';
+        // this.czipCode = '';
+        // this.paddressLine1 = '';
+        // this.paddressLine2 = '';
+        // this.plandMark = '';
+        // this.pzipCode = '';
+        // this.ccity = '';
+        // this.cstate = '';
+        // this.ccountry = '';
+        // this.pcity = '';
+        // this.pstate = '';
+        // this.pcountry = '';
         
        
       
         // Clear error messages
-        this.errorMessages = {};
+        //this.errorMessages = {};
 
         
     alert('Employee data submitted successfully!');
