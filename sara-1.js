@@ -32,6 +32,31 @@ class EmployeeForm extends LitElement {
 
   }
 
+  handleEdit(employee) {
+    const updatedName = prompt('Enter the updated name:');
+    if (updatedName) {
+      employee.fullName = updatedName;
+      this.updateLocalStorageAndRefresh();
+    }
+  }
+
+
+  handleDelete(employee) {
+    const confirmed = confirm(`Are you sure you want to delete ${employee.fullName}?`);
+    if (confirmed) {
+      const index = this.employees.indexOf(employee);
+      if (index > -1) {
+        this.employees.splice(index, 1);
+        this.updateLocalStorageAndRefresh();
+      }
+    }
+  }
+
+  updateLocalStorageAndRefresh() {
+    localStorage.setItem("employees", JSON.stringify(this.employees));
+    this.filteredEmployees = [...this.employees];
+  }
+
 
 
   render() {
@@ -48,12 +73,17 @@ class EmployeeForm extends LitElement {
         <ol>
           ${this.filteredEmployees.map(item => html`
             <li>
-              <div class="employee-info">
-              
-                <p>Full Name: ${item.fullName}</p>
-                <p>Employee Code: ${item.employeeCode}</p>
-
-              </div>
+            <div class="employee-info">
+            <p>Full Name: ${item.fullName}</p>
+            <p>Employee Code: ${item.employeeCode}</p>
+            <p>Official Email Address: ${item.officialEmail}</p>
+            <p>Personal Email Address: ${item.personalEmail}</p>
+            <p>Designation: ${item.designation}</p>
+            <p>Department: ${item.department}</p>
+            
+            <button @click="${() => this.handleEdit(item)}">Edit</button>
+            <button @click="${() => this.handleDelete(item)}">Delete</button>
+          </div>
             </li>
           `)}
         </ol>
