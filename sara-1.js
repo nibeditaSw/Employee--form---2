@@ -48,12 +48,12 @@ class EmployeeForm extends LitElement {
     font-family: monospace;
     border: 1px solid transparent;
     border-radius: 20px;
-    text-align: center;
+    //text-align: center;
     cursor: pointer;
     box-shadow: 1px 1px 20px #14EACFFF,
                 1px 1px 40px #14EACFFF;    
     float: left;
-    padding: 70px; 
+    padding: 60px; 
     text-align: left;
     font-weight: bold;
     overflow: hidden;
@@ -77,6 +77,7 @@ class EmployeeForm extends LitElement {
     
 
   }
+
 
   .btn1{
     background-color: rgba(0,0,0,.5);
@@ -124,6 +125,17 @@ class EmployeeForm extends LitElement {
     
   }
 
+  #sara .btn,
+  .btn1 {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 150px;
+    height: 40px;
+  }
+
+
+
+
   #search-bar{
     display: flex;
     justify-content: center;
@@ -169,6 +181,7 @@ class EmployeeForm extends LitElement {
     color: #03e9f4;
     font-size: 14px;
     cursor: pointer;
+    
    
      
     
@@ -190,7 +203,7 @@ class EmployeeForm extends LitElement {
     font-family: monospace;
     border: 1px solid transparent;
     border-radius: 20px;
-    text-align: center;
+    //text-align: center;
     cursor: pointer;
     box-shadow: 1px 1px 20px #14EACFFF,
                 1px 1px 40px #14EACFFF;  
@@ -198,6 +211,7 @@ class EmployeeForm extends LitElement {
     padding: 40px; 
     text-align: left;
     line-height: 1.4;
+    
     
   
   }
@@ -251,6 +265,17 @@ class EmployeeForm extends LitElement {
     color: black;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
   }
+
+  #bubu .btn2,
+  .btn3 {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 150px;
+    height: 40px;
+  }
+
+
+
 
   .employee-info {
     line-height: 1.6;
@@ -364,13 +389,13 @@ saveUser(user) {
           <p>Correspondence State: ${item.cstate}</p>
           <p>Correspondence Country: ${item.ccountry}</p>
           <p>Correspondence Zip: ${item.czipCode}</p>
-          <p>Permanent Address Line 1: ${item.paddressLine1}</p>
+          <!-- <p>Permanent Address Line 1: ${item.paddressLine1}</p>
           <p>Permanent Address Line 2: ${item.paddressLine2}</p>
           <p>Permanent Landmark: ${item.plandMark}</p>
           <p>Permanent City: ${item.pcity}</p>
           <p>Permanent State: ${item.pstate}</p>
           <p>Permanent Country: ${item.pcountry}</p>
-          <p>Permanent Zip: ${item.pzipCode}</p>
+          <p>Permanent Zip: ${item.pzipCode}</p> -->
           </div>
           <br><br>
           <div id="sara">
@@ -382,6 +407,8 @@ saveUser(user) {
           <button class="btn1" @click="${() => this.handleDelete(item)}">Delete</button>
           </div>
         </div>
+
+        
         ${this.editingUser === item ? html`
         <div class=table-body>
           <div class="nehu">
@@ -423,6 +450,7 @@ saveUser(user) {
                 
           </div>
           <br>
+          
             <div id="bubu">
             
                   <button class="btn2" @click="${() => this.saveUser(item)}" id="save">Save</button>
