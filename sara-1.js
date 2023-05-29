@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
-
-class EmployeeForm extends LitElement {
+import "./nehu-3.js";
+class DataPage extends LitElement {
   static styles = css`
 
   *{
@@ -43,19 +43,22 @@ class EmployeeForm extends LitElement {
     width: infinite;
     margin: 70px;
      color: lightblue;
+    //color: black;
     font-size: 16px;
     background-color: transparent;
     font-family: monospace;
     border: 1px solid transparent;
     border-radius: 20px;
-    //text-align: center;
+    // padding: 5px;
+    text-align: center;
     cursor: pointer;
     box-shadow: 1px 1px 20px #14EACFFF,
-                1px 1px 40px #14EACFFF;    
+                1px 1px 40px #14EACFFF;
+    //animation: anime 1s linear infinite;     
     float: left;
-    padding: 60px; 
+    padding: 70px; 
     text-align: left;
-    font-weight: bold;
+    //font-weight: bold;
     overflow: hidden;
     transition: transform .5s;
 
@@ -72,18 +75,37 @@ class EmployeeForm extends LitElement {
 
 
 
+  // .card:nth-child(1){
+  //   animation-delay: 0.2s;
+  // }
+
+  
+  // .card:nth-child(2){
+  //   animation-delay: 0.4s;
+  // }
+
+  // @keyframes anime{
+  //   0%{
+  //     filter: hue-rotate(0deg);
+  //   }
+  //   100%{
+  //     filter: hue-rotate(360deg);
+  //   }
+  // }
+
+
   #sara{
     display: flex;
     
 
   }
 
-
   .btn1{
     background-color: rgba(0,0,0,.5);
     color: #03e9f4;
     height: 40px;
     width: 50%;
+    //text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1rem;
     font-weight: bold;
@@ -106,6 +128,7 @@ class EmployeeForm extends LitElement {
     color: #03e9f4;
     height: 40px;
     width: 50%;
+    //text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1rem;
     font-weight: bold;
@@ -125,17 +148,6 @@ class EmployeeForm extends LitElement {
     
   }
 
-  #sara .btn,
-  .btn1 {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 150px;
-    height: 40px;
-  }
-
-
-
-
   #search-bar{
     display: flex;
     justify-content: center;
@@ -145,21 +157,23 @@ class EmployeeForm extends LitElement {
 
   #search-input{
     width: 200px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    font-size: 16px;
-    padding: 5px;
-    font-weight: bold;
-    font-style: italic;
-    font-family: monospace;
+  //box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 5px;
+  font-weight: bold;
+  font-style: italic;
+  font-family: monospace;
 
 
  
   
-  }
+}
 
 .search{
   width: 40px;
+  //box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 20px;
   font-size: 16px;
@@ -178,40 +192,51 @@ class EmployeeForm extends LitElement {
   .nehu{
     display:flex;
     padding: 6px;
+   // margin-bottom: 30px;
+    //width: 100%;
+    // border: none;
+    // border-bottom: 1px solid #fff;
+    // outline: none;
+    //background-color: transparent; 
     color: #03e9f4;
     font-size: 14px;
     cursor: pointer;
+    //margin: 5px;
     
-   
-     
+    
     
   }
 
-  
+  // .nehu h1{
+  //   font-size:1em;
+  //   margin-left: 90px;
+  // }
 
   .table-body{
     display: flex; 
     justify-content: space-around;
     align-items: left;
     flex-direction: column;
-    height: 90%;
+     height: 90%;
     width: infinite;
     margin: 80px;
-    color: white;
+     color: white;
+    //color: black;
     font-size: 16px;
     background-color: transparent;
     font-family: monospace;
     border: 1px solid transparent;
     border-radius: 20px;
-    //text-align: center;
+    // padding: 5px;
+    text-align: center;
     cursor: pointer;
     box-shadow: 1px 1px 20px #14EACFFF,
-                1px 1px 40px #14EACFFF;  
+                1px 1px 40px #14EACFFF;
+    //animation: anime 1s linear infinite;     
     float: left;
     padding: 40px; 
     text-align: left;
     line-height: 1.4;
-    
     
   
   }
@@ -266,25 +291,34 @@ class EmployeeForm extends LitElement {
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
   }
 
-  #bubu .btn2,
-  .btn3 {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 150px;
-    height: 40px;
-  }
-
-
-
-
   .employee-info {
-    line-height: 1.6;
+    line-height: 1.4;
   }
 
 
 
-  
- 
+  //edit form fields
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  /* Modal styles */
+  .modal {
+    max-width: 600px; /* Adjust the width as needed */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
 
 
 
@@ -301,7 +335,9 @@ class EmployeeForm extends LitElement {
   static get properties() {
     return {
       employees: { type: Array },
-      filteredEmployees: { type: Array }
+      filteredEmployees: { type: Array },
+      editingUser: { type: Object },
+  
     };
   }
 
@@ -321,38 +357,16 @@ class EmployeeForm extends LitElement {
   }
 
   
-editUser(user) {
-  this.editingUser = user;
-  this.requestUpdate();
-}
-cancelEdit(user) {
-  localStorage.setItem("employees", JSON.stringify(this.employees));
-  this.editingUser = null;
-  this.requestUpdate();
-}
-saveUser(user) {
-  localStorage.setItem("employees", JSON.stringify(this.employees));
-  this.editingUser = null;
-  this.requestUpdate();
-}
+
 
   
 
-  handleDelete(employee) {
-    const confirmed = confirm(`Are you sure you want to delete ${employee.fullName}?`);
-    if (confirmed) {
-      const index = this.employees.indexOf(employee);
-      if (index > -1) {
-        this.employees.splice(index, 1);
-        this.updateLocalStorageAndRefresh();
-      }
-    }
-  }
+ 
 
-  updateLocalStorageAndRefresh() {
-    localStorage.setItem("employees", JSON.stringify(this.employees));
-    this.filteredEmployees = [...this.employees];
-  }
+  // updateLocalStorageAndRefresh() {
+  //   localStorage.setItem("employees", JSON.stringify(this.employees));
+  //   this.filteredEmployees = [...this.employees];
+  // }
   render() {
     return html`
     
@@ -367,103 +381,92 @@ saveUser(user) {
   </div>
   
     <div class="card-list">
-      ${this.filteredEmployees.map(item => html`
+      ${this.employees.map((item,index) => html`
       
         <div class="card">
           <div class="employee-info">
-            <p>Full Name: ${item.fullName}</p>
-            <p>Employee Code: ${item.employeeCode}</p>
-            <p>Official Email Address: ${item.officialEmail}</p>
-            <p>Personal Email Address: ${item.personalEmail}</p>
-            <p>Designation: ${item.designation}</p>
-            <p>Department: ${item.department}</p>
+            <p><strong>Full Name:</strong> ${item.fullName}</p>
+            <p><strong>Employee Code:</strong> ${item.employeeCode}</p>
+            <p><strong>Official Email Address:</strong> ${item.officialEmail}</p>
+            <p><strong>Personal Email Address:</strong> ${item.personalEmail}</p>
+            <p><strong>Designation:</strong> ${item.designation}</p>
+            <p><strong>Department:</strong> ${item.department}</p>
           
-          <p>Primary Number: ${item.primaryContact}</p>
-          <p>Secondary Number: ${item.secondaryContact}</p>
-          <p>Emergency Number: ${item.emergencyContact}</p>
-          <p>Correspondence Address Line 1: ${item.caddressLine1}</p>
-          <p>Correspondence Address Line 2: ${item.caddressLine2}</p>
-          <p>Correspondence Landmark: ${item.clandMark}</p>
+          <p><strong>Primary Number:</strong> ${item.primaryContact}</p>
+          <p><strong>Secondary Number:</strong> ${item.secondaryContact}</p>
+          <p><strong>Emergency Number:</strong> ${item.emergencyContact}</p>
+          <p><strong>Correspondence Address Line 1:</strong> ${item.caddressLine1}</p>
+          <p><strong>Correspondence Address Line 2:</strong> ${item.caddressLine2}</p>
+          <p><strong>Correspondence Landmark:</strong> ${item.clandMark}</p>
           
-          <p>Correspondence City: ${item.ccity}</p>
-          <p>Correspondence State: ${item.cstate}</p>
-          <p>Correspondence Country: ${item.ccountry}</p>
-          <p>Correspondence Zip: ${item.czipCode}</p>
-          <!-- <p>Permanent Address Line 1: ${item.paddressLine1}</p>
-          <p>Permanent Address Line 2: ${item.paddressLine2}</p>
-          <p>Permanent Landmark: ${item.plandMark}</p>
-          <p>Permanent City: ${item.pcity}</p>
-          <p>Permanent State: ${item.pstate}</p>
-          <p>Permanent Country: ${item.pcountry}</p>
-          <p>Permanent Zip: ${item.pzipCode}</p> -->
+          <p><strong>Correspondence City:</strong> ${item.ccity}</p>
+          <p><strong>Correspondence State:</strong> ${item.cstate}</p>
+          <p><strong>Correspondence Country:</strong> ${item.ccountry}</p>
+          <p><strong>Correspondence Zip:</strong> ${item.czipCode}</p>
+          <p><strong>Permanent Address Line 1:</strong> ${item.paddressLine1}</p>
+          <p><strong>Permanent Address Line 2:</strong> ${item.paddressLine2}</p>
+          <p><strong>Permanent Landmark:</strong> ${item.plandMark}</p>
+          <p><strong>Permanent City:</strong> ${item.pcity}</p>
+          <p><strong>Permanent State:</strong> ${item.pstate}</p>
+          <p><strong>Permanent Country:</strong> ${item.pcountry}</p>
+          <p><strong>Permanent Zip:</strong> ${item.pzipCode}</p>
           </div>
           <br><br>
           <div id="sara">
           
-          <button class="btn" @click="${() => this.editUser(item)}">Edit</button>
+          <button class="btn" @click="${() => this.editUser(index)}">Edit</button>
             
          
           
-          <button class="btn1" @click="${() => this.handleDelete(item)}">Delete</button>
+          <button class="btn1" @click="${() => this.deleteUser(index)}">Delete</button>
           </div>
         </div>
+        ${this.editingUser === index
+           ? html`
+           <div class="overlay">
+           <div class="edit-form"> 
+          <sara-2
+          .employees=${this.employees}
+          .editingUserIndex=${index}
+          @save-form=${this.handleSaveForm}
+        ></sara-2>
 
-        
-        ${this.editingUser === item ? html`
-        <div class=table-body>
-          <div class="nehu">
-            
-                <p><strong>Full Name:</strong><br><input type="text" .value="${item.fullName}" @input="${e => item.fullName = e.target.value}"></p>
-                <p><strong>Emergency Number:</strong><br><input type="text" .value="${item.emergencyContact}" @input="${e => item.emergencyContact = e.target.value}"></p>
-                
-</div>
-<div class="nehu">
-                <p><strong>Employee Code:</strong><br><input type="text" .value="${item.employeeCode}" @input="${e => item.employeeCode = e.target.value}"></p>
-                <p><strong>Correspondence Address 1:</strong><br><input type="text" .value="${item.caddressLine1}" @input="${e => item.caddressLine1 = e.target.value}"></p>
-</div>
-<div class="nehu">
-                <p><strong>Official Email:</strong><br><input type="text" .value="${item.officialEmail}" @input="${e => item.officialEmail = e.target.value}"></p>
-                 
-                <p><strong>Correspondence Address 2:</strong><br><input type="text" .value="${item.caddressLine2}" @input="${e => item.caddressLine2 = e.target.value}"></p>
-</div>
-<div class="nehu">
-      <p><strong>Personal Email:</strong><br><input type="text" .value="${item.personalEmail}" @input="${e => item.personalEmail = e.target.value}"></p>
-      <p><strong>Correspondence Landmark:</strong><br><input type="text" .value="${item.clandMark}" @input="${e => item.clandMark = e.target.value}"></p>
-</div>
-<div class="nehu">
-               
-              <p><strong>Designation:</strong><br><input type="text" .value="${item.designation}" @input="${e => item.designation = e.target.value}"></p>
-              <p><strong>Correspondence City:</strong><br><input type="text" .value="${item.ccity}" @input="${e => item.ccity = e.target.value}"></p>
-</div>
-<div class="nehu">
-                <p><strong>Department:</strong><br><input type="text" .value="${item.department}" @input="${e => item.department = e.target.value}"></p>
-                <p><strong>Correspondence State:</strong><br><input type="text" .value="${item.cstate}" @input="${e => item.cstate = e.target.value}"></p>
-</div>
-<div class="nehu">
-                <p><strong>Primary Number:</strong><br><input type="text" .value="${item.primaryContact}" @input="${e => item.primaryContact = e.target.value}"></p>  
-                <p><strong>Correspondence Country:</strong><br><input type="text" .value="${item.ccountry}" @input="${e => item.ccountry = e.target.value}"></p>
-</div>
-<div class="nehu">
-                
-                <p><strong>Secondary Number:</strong><br><input type="text" .value="${item.secondaryContact}" @input="${e => item.secondaryContact = e.target.value}"></p>
-                <p><strong>Correspondence Zip:</strong><br><input type="text" .value="${item.czipCode}" @input="${e => item.czipCode = e.target.value}"></p>
-                
-          </div>
-          <br>
-          
-            <div id="bubu">
-            
-                  <button class="btn2" @click="${() => this.saveUser(item)}" id="save">Save</button>
-                  <button class="btn3" @click="${() => this.cancelEdit()}" id="cancel">Cancel</button>
-            </div>
-            </div>
-              </div>  
+        </div>
+        </div>
+   
             ` : ''}
       `)}
     </div>
   </div>
   
     `;
+  }
+  editUser(index) {
+    this.editingUser = index;
+  }
+
+  deleteUser(index) {
+    const deletedUserName = this.employees[index].fullName;
+    if (confirm(`Are you sure, you want to delete ${deletedUserName}?`)) {
+      this.employees.splice(index, 1);
+      localStorage.setItem("employees", JSON.stringify(this.employees));
+      this.requestUpdate();
+    }
+  }
+
+
+  handleSaveForm(event) {
+    const { employees, index } = event.detail;
+    if (index !== -1) {
+      
+      this.employees[index] = employees;
+    } else {
+     
+      this.employees.push(employees);
+    }
+    localStorage.setItem("employees", JSON.stringify(this.employees));
+    this.editingUser = null;
+    this.requestUpdate();
   }
   
   
@@ -472,4 +475,4 @@ saveUser(user) {
   
 }
 
-customElements.define('sara-1', EmployeeForm);
+customElements.define('sara-1', DataPage );

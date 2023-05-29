@@ -4,10 +4,6 @@ import { html, css, LitElement } from 'lit';
 class EmployeeForm extends LitElement {
   static styles = css`
 
-  
-  
-
-
   h1 {
     text-align: center;
     margin: 0 0 30px;
@@ -134,7 +130,7 @@ class EmployeeForm extends LitElement {
   button[type="submit"] {
 
     position: absolute;
-    bottom: -250px;
+    bottom: -170px;
     display: inline-block;
     width: 25%;
     padding: 18px 25px;
@@ -167,18 +163,13 @@ class EmployeeForm extends LitElement {
   } 
 
 
-
-
-  
-
-  
-
-    
   `;
 
 
 
   static properties = {
+    employeeData: { type: Array },
+    editingUserIndex: { type: Number },
     fullName: { type: String },
     employeeCode: { type: String },
     officialEmail: { type: String },
@@ -202,6 +193,7 @@ class EmployeeForm extends LitElement {
     pcity: { type: String }, 
     pstate: { type: String }, 
     pcountry: { type: String }, 
+     
 
     errorMessages: { type: Object },
     
@@ -209,6 +201,8 @@ class EmployeeForm extends LitElement {
 
   constructor() {
     super();
+    this.employeeData = [];
+    this.editingUserIndex = -1;
     this.fullName = '';
     this.employeeCode = '';
     this.officialEmail = '';
@@ -237,6 +231,20 @@ class EmployeeForm extends LitElement {
     this.errorMessages = {};
     
     
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has("editingUserIndex")) {
+      if (this.editingUserIndex !== -1) {
+        const user = this.employees[this.editingUserIndex];
+        if (user) {
+          this.fullName = user.fullName;
+          this.employeeCode = user.employeeCode;
+          this.officialEmail = user.officialEmail;
+          this.personalEmail = user.personalEmail;
+        }
+      }
+    }
   }
 
   render() {
@@ -296,269 +304,271 @@ class EmployeeForm extends LitElement {
           pattern="[a-zA-Z0-9._%+-]+@gmail\.com|yahoo\.com"
         />
         ${this.errorMessages.personalEmail ? html`<p>${this.errorMessages.personalEmail}</p>` : ''}
-  
 
-    <label for="primaryContact">Primary Contact:*</label>
-    <input
-      type="tel"
-      id="primaryContact"
-      .value=${this.primaryContact}
-      @input=${this.handleInputChange}
-      required
-      pattern="[0-9]{10}"
-    />
-    ${this.errorMessages.primaryContact ? html`<p>${this.errorMessages.primaryContact}</p>` : ''}
+
+
+        <label for="primaryContact">Primary Contact:*</label>
+        <input
+          type="tel"
+          id="primaryContact"
+          .value=${this.primaryContact}
+          @input=${this.handleInputChange}
+          required
+          pattern="[0-9]{10}"
+        />
+        ${this.errorMessages.primaryContact ? html`<p>${this.errorMessages.primaryContact}</p>` : ''}
+        
+        </div>
     
-    </div>
-
+        
+        <div>
+        
+        <label for="secondaryContact">Secondary Contact:*</label>
+        <input
+          type="tel"
+          id="secondaryContact"
+          .value=${this.secondaryContact}
+          @input=${this.handleInputChange}
+          required
+          pattern="[0-9]{10}"
+        />
+        ${this.errorMessages.secondaryContact ? html`<p>${this.errorMessages.secondaryContact}</p>` : ''}
+        
+        
+    
+        <label for="emergencyContact">Emergency Contact:*</label>
+        <input
+          type="tel"
+          id="emergencyContact"
+          .value=${this.emergencyContact}
+          @input=${this.handleInputChange}
+          required
+          pattern="[0-9]{10}"
+        />
+        ${this.errorMessages.emergencyContact ? html`<p>${this.errorMessages.emergencyContact}</p>` : ''}
+    
+        <label for="designation">Designation:*</label>
+        <select id="designation" @change=${this.handleInputChange}>
+          <option value="">Select designation</option>
+          <option value="Lead Engineering">Lead Engineering</option>
+          <option value="Manager">Manager</option>
+          <option value="Senior Associate">Senior Associate</option>
+          <option value="Junior Associate">Junior Associate</option>
+          <option value="Graduate Trainee">Graduate Trainee</option>
+        </select>
+        ${this.errorMessages.designation ? html`<p>${this.errorMessages.designation}</p>` : ''}
+        
+        <br><br>
+    
+        
+        <label for="department">Department:*</label>
+            <select id="department" @change=${this.handleInputChange}>
+              <option value="">Select department</option>
+              ${this.departments.map(
+                (dept) =>
+                  html`
+                    <option value=${dept}>${dept}</option>
+                  `)}
+            </select>
+            ${this.errorMessages.department ? html`<p>${this.errorMessages.department}</p>` : ''}
+    
+    
+    
+       
+        <br> <br> <br>
+        
+        <label for="caddressLine1">Address Line 1:*</label>
+            <input
+              type="text"
+              id="caddressLine1"
+              .value=${this.caddressLine1}
+              @input=${this.handleInputChange}
+              required
+              maxlength="80"
+            />
+            ${this.errorMessages.caddressLine1 ? html`<p>${this.errorMessages.caddressLine1}</p>` : ''}
+      
+    
+            <label for="caddressLine2">Address Line 2:</label>
+            <input
+              type="text"
+              id="caddressLine2"
+              .value=${this.caddressLine2}
+              @input=${this.handleInputChange}
+            />
+    
+            </div>
     
     <div>
     
-    <label for="secondaryContact">Secondary Contact:*</label>
-    <input
-      type="tel"
-      id="secondaryContact"
-      .value=${this.secondaryContact}
-      @input=${this.handleInputChange}
-      required
-      pattern="[0-9]{10}"
-    />
-    ${this.errorMessages.secondaryContact ? html`<p>${this.errorMessages.secondaryContact}</p>` : ''}
-    
-    
-
-    <label for="emergencyContact">Emergency Contact:*</label>
-    <input
-      type="tel"
-      id="emergencyContact"
-      .value=${this.emergencyContact}
-      @input=${this.handleInputChange}
-      required
-      pattern="[0-9]{10}"
-    />
-    ${this.errorMessages.emergencyContact ? html`<p>${this.errorMessages.emergencyContact}</p>` : ''}
-
-    <label for="designation">Designation:*</label>
-    <select id="designation" @change=${this.handleInputChange}>
-      <option value="">Select designation</option>
-      <option value="Lead Engineering">Lead Engineering</option>
-      <option value="Manager">Manager</option>
-      <option value="Senior Associate">Senior Associate</option>
-      <option value="Junior Associate">Junior Associate</option>
-      <option value="Graduate Trainee">Graduate Trainee</option>
-    </select>
-    ${this.errorMessages.designation ? html`<p>${this.errorMessages.designation}</p>` : ''}
-    
-    <br><br>
-
-    
-    <label for="department">Department:*</label>
-        <select id="department" @change=${this.handleInputChange}>
-          <option value="">Select department</option>
-          ${this.departments.map(
-            (dept) =>
-              html`
-                <option value=${dept}>${dept}</option>
-              `)}
-        </select>
-        ${this.errorMessages.department ? html`<p>${this.errorMessages.department}</p>` : ''}
-
-
-
-   
-    <br> <br> <br>
-    
-    <label for="caddressLine1">Address Line 1:*</label>
-        <input
-          type="text"
-          id="caddressLine1"
-          .value=${this.caddressLine1}
-          @input=${this.handleInputChange}
-          required
-          maxlength="80"
-        />
-        ${this.errorMessages.caddressLine1 ? html`<p>${this.errorMessages.caddressLine1}</p>` : ''}
-  
-
-        <label for="caddressLine2">Address Line 2:</label>
-        <input
-          type="text"
-          id="caddressLine2"
-          .value=${this.caddressLine2}
-          @input=${this.handleInputChange}
-        />
-
-        </div>
-
-<div>
-
-        <label for="clandMark">Land Mark:*</label>
-        <input
-          type="text"
-          id="clandMark"
-          .value=${this.clandMark}
-          @input=${this.handleInputChange}
-          required
-          maxlength="50"
-        />
-        ${this.errorMessages.clandMark ? html`<p>${this.errorMessages.clandMark}</p>` : ''}
-  
-  
-        <label for="czipCode">Zip Code:*</label>
-        <input
-          type="text"
-          id="czipCode"
-          .value=${this.czipCode}
-          @input=${this.handleInputChange}
-          required
-          pattern="[0-9]{6}"
-        />
-        ${this.errorMessages.czipCode ? html`<p>${this.errorMessages.czipCode}</p>` : ''}
-        
-        
-        <label for="ccity">City:*</label>
-        <select id="ccity" @change=${this.handleInputChange}>
-          <option value="">Select a city</option>
-          <option value="Banglore">Banglore</option>
-          <option value="Hyderabad">Hyderabad</option>
-          <option value="Mumbai">Mumbai</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Kolkata">Kolkata</option>
-          
-        </select>
-        ${this.errorMessages.ccity ? html`<p>${this.errorMessages.ccity}</p>` : ''}
-
-        <br><br>
-
-        <label for="cstate">State:*</label>
-        <select id="cstate" @change=${this.handleInputChange}>
-          <option value="">Select a state</option>
-          <option value="Karnataka">Karnataka</option>
-          <option value="Telangana">Telangana</option>
-          <option value="Maharashtra">Maharashtra</option>
-          <option value="Uttar Pradesh">Uttar Pradesh</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
-          <option value="West Bengal">West Bengal</option>
-          
-          
-        </select>
-        ${this.errorMessages.cstate ? html`<p>${this.errorMessages.cstate}</p>` : ''}
-
-        <br><br>
+            <label for="clandMark">Land Mark:*</label>
+            <input
+              type="text"
+              id="clandMark"
+              .value=${this.clandMark}
+              @input=${this.handleInputChange}
+              required
+              maxlength="50"
+            />
+            ${this.errorMessages.clandMark ? html`<p>${this.errorMessages.clandMark}</p>` : ''}
       
-        <label for="ccountry">Country:*</label>
-        <select id="ccountry" @change=${this.handleInputChange}>
-          <option value="">Select a Country</option>
-          <option value="India">India</option>
-          <option value="US">US</option>
-          <option value="UK">UK</option>
-          
-        </select>
-        ${this.errorMessages.ccountry ? html`<p>${this.errorMessages.ccountry}</p>` : ''}
-
-
-
       
-      <br><br><br>
+            <label for="czipCode">Zip Code:*</label>
+            <input
+              type="text"
+              id="czipCode"
+              .value=${this.czipCode}
+              @input=${this.handleInputChange}
+              required
+              pattern="[0-9]{6}"
+            />
+            ${this.errorMessages.czipCode ? html`<p>${this.errorMessages.czipCode}</p>` : ''}
+            
+            
+            <label for="ccity">City:*</label>
+            <select id="ccity" @change=${this.handleInputChange}>
+              <option value="">Select a city</option>
+              <option value="Banglore">Banglore</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Kolkata">Kolkata</option>
+              
+            </select>
+            ${this.errorMessages.ccity ? html`<p>${this.errorMessages.ccity}</p>` : ''}
     
-        <label for="paddressLine1"> Permanent Address Line 1:*</label>
-        <input
-          type="text"
-          id="paddressLine1"
-          .value=${this.paddressLine1}
-          @input=${this.handleInputChange}
-          required
-          maxlength="80"
-        />
-        ${this.errorMessages.paddressLine1 ? html`<p>${this.errorMessages.paddressLine1}</p>` : ''}
+            <br><br>
+    
+            <label for="cstate">State:*</label>
+            <select id="cstate" @change=${this.handleInputChange}>
+              <option value="">Select a state</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="West Bengal">West Bengal</option>
+              
+              
+            </select>
+            ${this.errorMessages.cstate ? html`<p>${this.errorMessages.cstate}</p>` : ''}
+    
+            <br><br>
+          
+            <label for="ccountry">Country:*</label>
+            <select id="ccountry" @change=${this.handleInputChange}>
+              <option value="">Select a Country</option>
+              <option value="India">India</option>
+              <option value="US">US</option>
+              <option value="UK">UK</option>
+              
+            </select>
+            ${this.errorMessages.ccountry ? html`<p>${this.errorMessages.ccountry}</p>` : ''}
+    
+    
+    
+          
+          <br><br><br>
+        
+            <label for="paddressLine1"> Permanent Address Line 1:*</label>
+            <input
+              type="text"
+              id="paddressLine1"
+              .value=${this.paddressLine1}
+              @input=${this.handleInputChange}
+              required
+              maxlength="80"
+            />
+            ${this.errorMessages.paddressLine1 ? html`<p>${this.errorMessages.paddressLine1}</p>` : ''}
+      
+            </div>
+    
+    
+          <div>
+            <label for="paddressLine2">Permanent Address Line 2:</label>
+            <input
+              type="text"
+              id="paddressLine2"
+              .value=${this.paddressLine2}
+              @input=${this.handleInputChange}
+            />
+    
+            <label for="plandMark">Permanent Land Mark:*</label>
+            <input
+              type="text"
+              id="plandMark"
+              .value=${this.plandMark}
+              @input=${this.handleInputChange}
+              required
+              maxlength="80"
+            />
+            ${this.errorMessages.plandMark ? html`<p>${this.errorMessages.plandMark}</p>` : ''}
+      
+      
+            <label for="pzipCode">Permanent Zip Code:*</label>
+            <input
+              type="text"
+              id="pzipCode"
+              .value=${this.pzipCode}
+              @input=${this.handleInputChange}
+              required
+              pattern="[0-9]{6}"
+            />
+            ${this.errorMessages.pzipCode ? html`<p>${this.errorMessages.pzipCode}</p>` : ''}
+    
+            
+            <label for="pcity">Permanent City:*</label>
+            <select id="pcity" @change=${this.handleInputChange}>
+            <option value="">Select a city</option>
+            <option value="Banglore">Banglore</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Kolkata">Kolkata</option>
+              
+            </select>
+            ${this.errorMessages.pcity ? html`<p>${this.errorMessages.pcity}</p>` : ''}
+    
+            <br><br>
+    
+            <label for="pstate">Permanent State:*</label>
+            <select id="pstate" @change=${this.handleInputChange}>
+            <option value="">Select a state</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="West Bengal">West Bengal</option>
+            </select>
+            ${this.errorMessages.pstate ? html`<p>${this.errorMessages.pstate}</p>` : ''}
+    
+            <br><br>
+          
+            <label for="pcountry">Permanent Country:*</label>
+            <select id="pcountry" @change=${this.handleInputChange}>
+            <option value="">Select a Country</option>
+            <option value="India">India</option>
+            <option value="US">US</option>
+            <option value="UK">UK</option>
+              
+            </select>
+            ${this.errorMessages.pcountry ? html`<p>${this.errorMessages.pcountry}</p>` : ''}
+    
+    
+            </div>
   
-        </div>
+
+    
+    
 
 
-      <div>
-        <label for="paddressLine2">Permanent Address Line 2:</label>
-        <input
-          type="text"
-          id="paddressLine2"
-          .value=${this.paddressLine2}
-          @input=${this.handleInputChange}
-        />
 
-        <label for="plandMark">Permanent Land Mark:*</label>
-        <input
-          type="text"
-          id="plandMark"
-          .value=${this.plandMark}
-          @input=${this.handleInputChange}
-          required
-          maxlength="80"
-        />
-        ${this.errorMessages.plandMark ? html`<p>${this.errorMessages.plandMark}</p>` : ''}
-  
-  
-        <label for="pzipCode">Permanent Zip Code:*</label>
-        <input
-          type="text"
-          id="pzipCode"
-          .value=${this.pzipCode}
-          @input=${this.handleInputChange}
-          required
-          pattern="[0-9]{6}"
-        />
-        ${this.errorMessages.pzipCode ? html`<p>${this.errorMessages.pzipCode}</p>` : ''}
 
         
-        <label for="pcity">Permanent City:*</label>
-        <select id="pcity" @change=${this.handleInputChange}>
-        <option value="">Select a city</option>
-        <option value="Banglore">Banglore</option>
-        <option value="Hyderabad">Hyderabad</option>
-        <option value="Mumbai">Mumbai</option>
-        <option value="Delhi">Delhi</option>
-        <option value="Chennai">Chennai</option>
-        <option value="Kolkata">Kolkata</option>
-          
-        </select>
-        ${this.errorMessages.pcity ? html`<p>${this.errorMessages.pcity}</p>` : ''}
-
-        <br><br>
-
-        <label for="pstate">Permanent State:*</label>
-        <select id="pstate" @change=${this.handleInputChange}>
-        <option value="">Select a state</option>
-        <option value="Karnataka">Karnataka</option>
-        <option value="Telangana">Telangana</option>
-        <option value="Maharashtra">Maharashtra</option>
-        <option value="Uttar Pradesh">Uttar Pradesh</option>
-        <option value="Tamil Nadu">Tamil Nadu</option>
-        <option value="West Bengal">West Bengal</option>
-        </select>
-        ${this.errorMessages.pstate ? html`<p>${this.errorMessages.pstate}</p>` : ''}
-
-        <br><br>
-      
-        <label for="pcountry">Permanent Country:*</label>
-        <select id="pcountry" @change=${this.handleInputChange}>
-        <option value="">Select a Country</option>
-        <option value="India">India</option>
-        <option value="US">US</option>
-        <option value="UK">UK</option>
-          
-        </select>
-        ${this.errorMessages.pcountry ? html`<p>${this.errorMessages.pcountry}</p>` : ''}
-
-
-        </div>
-
-
-    
-
-
-
-
-        
-        <button type="submit">Submit</button>
+        <button type="submit">${this.editingUserIndex !== -1 ? "Save" : "Submit"}</button>
         
     </form>
       
@@ -606,108 +616,110 @@ class EmployeeForm extends LitElement {
         break;
 
       case !this.designation:
-        errorMessages.designation = 'Designation is required';
+          errorMessages.designation = 'Designation is required';
         break;
-
+  
       case !this.department:
-        errorMessages.department = 'Department is required';
-        break;
+          errorMessages.department = 'Department is required';
+          break;
+  
+        case !this.primaryContact:
+          errorMessages.primaryContact = 'Primary Contact is required';
+          break;
+  
+        case !/^\d{10}$/.test(this.primaryContact):
+          errorMessages.primaryContact = 'Primary Contact should be a 10-digit number';
+          break;
+  
+        case !this.secondaryContact:
+          errorMessages.secondaryContact = 'Secondary Contact is required';
+          break;
+  
+        case !/^\d{10}$/.test(this.secondaryContact):
+          errorMessages.secondaryContact = 'Secondary Contact should be a 10-digit number';
+          break;
+  
+        case !this.emergencyContact:
+          errorMessages.emergencyContact = 'Emergency Contact is required';
+          break;
+  
+        case !/^\d{10}$/.test(this.emergencyContact):
+          errorMessages.emergencyContact = 'Emergency Contact should be a 10-digit number';
+          break;
+  
+        case !this.caddressLine1:
+          errorMessages.caddressLine1 = 'Address Line 1 cannot be empty';
+          break;
+  
+        case this.caddressLine1.length > 80:
+          errorMessages.caddressLine1 = 'Address Line 1 cannot exceed 80 characters';
+          break;
+  
+        case !this.clandMark:
+          errorMessages.clandMark = 'Land Mark cannot be empty';
+          break;
+  
+        case this.clandMark.length > 50:
+          errorMessages.clandMark = 'Land Mark cannot exceed 50 characters';
+          break;
+  
+        case !this.czipCode:
+          errorMessages.czipCode = 'Zip Code is required';
+          break;
+  
+        case !/^\d{6}$/.test(this.czipCode):
+          errorMessages.czipCode = 'Zip Code should be a 6-digit number';
+          break;
+  
+        case !this.ccity:
+          errorMessages.ccity = 'City is required';
+          break;
+  
+        case !this.cstate:
+          errorMessages.cstate = 'State is required';
+          break;
+  
+        case !this.ccountry:
+          errorMessages.ccountry = 'Country is required';
+          break;
+  
+        case !this.paddressLine1:
+          errorMessages.paddressLine1 = 'Address Line 1 cannot be empty';
+          break;
+  
+        case this.paddressLine1.length > 80:
+          errorMessages.paddressLine1 = 'Address Line 1 cannot exceed 80 characters';
+          break;
+  
+        case !this.plandMark:
+          errorMessages.plandMark = 'Land Mark cannot be empty';
+          break;
+  
+        case this.plandMark.length > 50:
+          errorMessages.plandMark = 'Land Mark cannot exceed 50 characters';
+          break;
+  
+        case !this.pzipCode:
+          errorMessages.pzipCode = 'Zip Code is required';
+          break;
+  
+        case !/^\d{6}$/.test(this.pzipCode):
+          errorMessages.pzipCode = 'Zip Code should be a 6-digit number';
+          break;
+  
+        case !this.pcity:
+          errorMessages.pcity = 'City is required';
+          break;
+  
+        case !this.pstate:
+          errorMessages.pstate = 'State is required';
+          break;
+          
+        case !this.pcountry:
+          errorMessages.pcountry = 'Country is required';
+          break;  
 
-      case !this.primaryContact:
-        errorMessages.primaryContact = 'Primary Contact is required';
-        break;
-
-      case !/^\d{10}$/.test(this.primaryContact):
-        errorMessages.primaryContact = 'Primary Contact should be a 10-digit number';
-        break;
-
-      case !this.secondaryContact:
-        errorMessages.secondaryContact = 'Secondary Contact is required';
-        break;
-
-      case !/^\d{10}$/.test(this.secondaryContact):
-        errorMessages.secondaryContact = 'Secondary Contact should be a 10-digit number';
-        break;
-
-      case !this.emergencyContact:
-        errorMessages.emergencyContact = 'Emergency Contact is required';
-        break;
-
-      case !/^\d{10}$/.test(this.emergencyContact):
-        errorMessages.emergencyContact = 'Emergency Contact should be a 10-digit number';
-        break;
-
-      case !this.caddressLine1:
-        errorMessages.caddressLine1 = 'Address Line 1 cannot be empty';
-        break;
-
-      case this.caddressLine1.length > 80:
-        errorMessages.caddressLine1 = 'Address Line 1 cannot exceed 80 characters';
-        break;
-
-      case !this.clandMark:
-        errorMessages.clandMark = 'Land Mark cannot be empty';
-        break;
-
-      case this.clandMark.length > 50:
-        errorMessages.clandMark = 'Land Mark cannot exceed 50 characters';
-        break;
-
-      case !this.czipCode:
-        errorMessages.czipCode = 'Zip Code is required';
-        break;
-
-      case !/^\d{6}$/.test(this.czipCode):
-        errorMessages.czipCode = 'Zip Code should be a 6-digit number';
-        break;
-
-      case !this.ccity:
-        errorMessages.ccity = 'City is required';
-        break;
-
-      case !this.cstate:
-        errorMessages.cstate = 'State is required';
-        break;
-
-      case !this.ccountry:
-        errorMessages.ccountry = 'Country is required';
-        break;
-
-      case !this.paddressLine1:
-        errorMessages.paddressLine1 = 'Address Line 1 cannot be empty';
-        break;
-
-      case this.paddressLine1.length > 80:
-        errorMessages.paddressLine1 = 'Address Line 1 cannot exceed 80 characters';
-        break;
-
-      case !this.plandMark:
-        errorMessages.plandMark = 'Land Mark cannot be empty';
-        break;
-
-      case this.plandMark.length > 50:
-        errorMessages.plandMark = 'Land Mark cannot exceed 50 characters';
-        break;
-
-      case !this.pzipCode:
-        errorMessages.pzipCode = 'Zip Code is required';
-        break;
-
-      case !/^\d{6}$/.test(this.pzipCode):
-        errorMessages.pzipCode = 'Zip Code should be a 6-digit number';
-        break;
-
-      case !this.pcity:
-        errorMessages.pcity = 'City is required';
-        break;
-
-      case !this.pstate:
-        errorMessages.pstate = 'State is required';
-        break;
-        
-      case !this.pcountry:
-        errorMessages.pcountry = 'Country is required';
-        break;
+      
       
     }
     
@@ -741,9 +753,18 @@ class EmployeeForm extends LitElement {
           pcity: this.pcity,
           pstate: this.pstate,
           pcountry: this.pcountry,
-         
+          
          
         };
+
+        const event = new CustomEvent("save-form", {
+      detail: { employeeData, index: this.editingUserIndex },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
+
+   
       
         // Save data to local storage as JSON
         const storedData = JSON.parse(localStorage.getItem('employees')) || [];
