@@ -145,18 +145,18 @@ class EmployeeForm extends LitElement {
 
   #search-input{
     width: 200px;
-  border: 2px solid #ccc;
-  border-radius: 20px;
-  font-size: 16px;
-  padding: 5px;
-  font-weight: bold;
-  font-style: italic;
-  font-family: monospace;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 5px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: monospace;
 
 
  
   
-}
+  }
 
 .search{
   width: 40px;
@@ -194,10 +194,10 @@ class EmployeeForm extends LitElement {
     justify-content: space-around;
     align-items: left;
     flex-direction: column;
-     height: 90%;
+    height: 90%;
     width: infinite;
     margin: 80px;
-     color: white;
+    color: white;
     font-size: 16px;
     background-color: transparent;
     font-family: monospace;
