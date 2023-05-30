@@ -561,7 +561,60 @@ class EmployeeForm extends LitElement {
             </div>
   
 
-    
+            <!--<sl-input
+
+                        name="name"
+              
+                        label="Name"
+              
+                        help-text="What would you like people to call you?"
+              
+                        autocomplete="off"
+              
+                        required
+              
+                      ></sl-input>
+              
+                      <sl-input
+              
+                        name="name"
+              
+                        label="Name"
+              
+                        help-text="What would you like people to call you?"
+              
+                        autocomplete="off"
+              
+                        required
+              
+                      ></sl-input>
+              
+              
+              
+              
+                      <sl-input
+            
+              type="text"
+            
+              id="name-input"
+            
+              label="Name"
+            
+              value=${this.name}
+            
+              @input=${this.validateName}
+            
+              required
+            
+            ></sl-input>
+            
+            <sl-icon-button icon="exclamation-triangle-fill" slot="suffix" color="danger"></sl-icon-button>
+            
+            <sl-tooltip content=${this.nameError} placement="top-start">
+            
+              <sl-icon-button icon="info-fill" slot="trigger"></sl-icon-button>
+            
+            </sl-tooltip>-->
     
 
 
