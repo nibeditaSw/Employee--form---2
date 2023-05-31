@@ -1,3 +1,4 @@
+
 import { html, css, LitElement } from 'lit';
 import { html, css, LitElement } from 'lit';
 import '@shoelace-style/shoelace/dist/themes/light.css';
@@ -7,7 +8,6 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/rating/rating.js';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 setBasePath('/path/to/shoelace/dist');
-
 
 
 
