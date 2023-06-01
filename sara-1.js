@@ -1,3 +1,4 @@
+
 import { LitElement, html, css } from 'lit-element';
 import "./nehu-3.js";
 class DataPage extends LitElement {
@@ -61,7 +62,6 @@ class DataPage extends LitElement {
     //font-weight: bold;
     overflow: hidden;
     transition: transform .5s;
-
 
   }
 
@@ -304,16 +304,16 @@ class DataPage extends LitElement {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
   }
 
-  /* Modal styles */
-  .modal {
-    max-width: 600px; /* Adjust the width as needed */
+ 
+  .edit-form {
+    max-width: 600px; 
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
