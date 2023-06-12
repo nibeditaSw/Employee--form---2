@@ -4,14 +4,17 @@ class Navbar extends LitElement {
   static get styles() {
     return css`
       nav {
-        background: linear-gradient(#141e30, #243b55);
+        background: royalblue;
         color: white;
         display: flex;
         justify-content: space-between;
-        padding: 1.5rem;
+        padding: 1rem;
         font-family: monospace;
         font-size: 20px;
         font-weight: bold;
+        box-shadow: 1px 1px 12px #000;
+        border-radius: 30px;
+        
       }
 
       ul {

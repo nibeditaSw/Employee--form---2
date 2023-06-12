@@ -1,343 +1,206 @@
-
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css } from "lit-element";
 import "./nehu-3.js";
 class DataPage extends LitElement {
   static styles = css`
+    #data {
+      background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+      border-radius: 30px;
+      box-shadow: 1px 1px 12px #000;
+      margin-top: 2.5px;
+    }
 
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-  }
+    h1 {
+      text-align: center;
+      margin: 0 0 30px;
+      padding: 0;
+      color: black;
+      font-family: monospace;
+      font-size: 30px;
+      font-weight: bold;
+    }
 
-  :host{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height:  infinite;
-    width: 100%;
-    background-color: #262626FF;
-    color: white;
+    .card-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding: 10px;
+    }
 
+    .book {
+      position: relative;
+      border-radius: 10px;
+      width: 350px;
+      height: 500px;
+      cursor: pointer;
+      background-color: whitesmoke;
+      -webkit-box-shadow: 1px 1px 12px #000;
+      box-shadow: 1px 1px 12px #000;
+      -webkit-transform: preserve-3d;
+      -ms-transform: preserve-3d;
+      transform: preserve-3d;
+      -webkit-perspective: 2000px;
+      perspective: 2000px;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      color: black;
+      margin-top: 80px;
+      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    }
 
+    .back {
+      padding-left: 50px;
+    }
 
-  }
+    .cover {
+      top: 0px;
+      position: absolute;
+      background-color: lightgray;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      -webkit-transform-origin: 0;
+      -ms-transform-origin: 0;
+      transform-origin: 0;
+      -webkit-box-shadow: 1px 1px 12px #000;
+      box-shadow: 1px 1px 12px #000;
+      padding-left: 20px;
+      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    }
 
-  h1 {
-    text-align: center;
-    margin: 0 0 30px;
-    padding: 0;
-    color: lightblue;
-    font-family: monospace;
-    font-size: 30px;
-    font-weight: bold;
-  }
+    .book:hover .cover {
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      -webkit-transform: rotatey(-80deg);
+      -ms-transform: rotatey(-80deg);
+      transform: rotatey(-80deg);
+    }
 
+    p {
+      font-size: 15px;
+      //  font-weight: bold;
+      font-family: monospace;
+      font-style: italic;
+    }
 
-  .card{
-    display: flex;
-    justify-content: space-around;
-    align-items: left;
-    flex-direction: column;
-     height: 90%;
-    width: infinite;
-    margin: 70px;
-     color: lightblue;
-    //color: black;
-    font-size: 16px;
-    background-color: transparent;
-    font-family: monospace;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    // padding: 5px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 1px 1px 20px #14EACFFF,
-                1px 1px 40px #14EACFFF;
-    //animation: anime 1s linear infinite;     
-    float: left;
-    padding: 70px; 
-    text-align: left;
-    //font-weight: bold;
-    overflow: hidden;
-    transition: transform .5s;
+    h2,
+    h3 {
+      font-family: sans-serif;
+    }
 
-  }
+    #sara {
+      padding-left: 40px;
+      display: flex;
+    }
 
-  .card:hover {
-    transform: translateY(-9px);
+    .btn,
+    .btn1 {
+      height: 40px;
+      width: 70%;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: 0.5s;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
 
-  }
+    .btn:hover,
+    .btn1:hover {
+      cursor: pointer;
+      color: black;
+      -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    }
 
-  
+    #search-bar {
+      display: flex;
+      justify-content: center;
+    }
 
+    #search-input {
+      margin-left: 530px;
+      width: 250px;
+      height: 25px;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      font-size: 16px;
+      padding: 5px;
+      font-weight: bold;
+      font-style: italic;
+      font-family: monospace;
+    }
+    .clear {
+      width: 90px;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      font-size: 16px;
+      padding: 5px;
+      color: red;
+      font-weight: bold;
+      font-family: monospace;
+      font-style: italic;
+      cursor: pointer;
+      height: 40px;
+      margin-left: 10px;
+    }
+    #sort-bar {
+      padding: 4px;
+      margin-left: 200px;
+      width: 150px;
+      font-weight: bold;
+      font-style: italic;
+      font-family: monospace;
+    }
 
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s linear 0.25s, opacity 0.25s 0s;
+    }
 
+    .overlay.active {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
 
-  // .card:nth-child(1){
-  //   animation-delay: 0.2s;
-  // }
-
-  
-  // .card:nth-child(2){
-  //   animation-delay: 0.4s;
-  // }
-
-  // @keyframes anime{
-  //   0%{
-  //     filter: hue-rotate(0deg);
-  //   }
-  //   100%{
-  //     filter: hue-rotate(360deg);
-  //   }
-  // }
-
-
-  #sara{
-    display: flex;
-    
-
-  }
-
-  .btn1{
-    background-color: rgba(0,0,0,.5);
-    color: #03e9f4;
-    height: 40px;
-    width: 50%;
-    //text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: .5s;
-  
-
-  }
-
-  .btn1:hover {
-    cursor: pointer;
-    background-color: red;
-    color: black;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  
-    
-  }
-
-  .btn{
-    background-color: rgba(0,0,0,.5);
-    color: #03e9f4;
-    height: 40px;
-    width: 50%;
-    //text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: .5s;
-    
-    
-  
-
-  }
-
-  .btn:hover {
-    cursor: pointer;
-    background-color: lightgreen;
-    color: black;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  
-    
-  }
-
-  #search-bar{
-    display: flex;
-    justify-content: center;
-    
-}
-
-
-  #search-input{
-    width: 200px;
-  //box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 20px;
-  font-size: 16px;
-  padding: 5px;
-  font-weight: bold;
-  font-style: italic;
-  font-family: monospace;
-
-
- 
-  
-}
-
-.search{
-  width: 40px;
-  //box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 20px;
-  font-size: 16px;
-  padding: 5px;
-  color: red;
-  font-weight: bold;
-  
- 
-}
-
-
-
-  
-
-
-  .nehu{
-    display:flex;
-    padding: 6px;
-   // margin-bottom: 30px;
-    //width: 100%;
-    // border: none;
-    // border-bottom: 1px solid #fff;
-    // outline: none;
-    //background-color: transparent; 
-    color: #03e9f4;
-    font-size: 14px;
-    cursor: pointer;
-    //margin: 5px;
-    
-    
-    
-  }
-
-  // .nehu h1{
-  //   font-size:1em;
-  //   margin-left: 90px;
-  // }
-
-  .table-body{
-    display: flex; 
-    justify-content: space-around;
-    align-items: left;
-    flex-direction: column;
-     height: 90%;
-    width: infinite;
-    margin: 80px;
-     color: white;
-    //color: black;
-    font-size: 16px;
-    background-color: transparent;
-    font-family: monospace;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    // padding: 5px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 1px 1px 20px #14EACFFF,
-                1px 1px 40px #14EACFFF;
-    //animation: anime 1s linear infinite;     
-    float: left;
-    padding: 40px; 
-    text-align: left;
-    line-height: 1.4;
-    
-  
-  }
-
-
-  #bubu{
-    display: flex;
-
-  }
-
-  .btn2{
-    background-color: rgba(0,0,0,.5);
-    color: #03e9f4;
-    height: 40px;
-    width: 50%;
-    //text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: .5s;
-  
-
-  }
-
-  .btn2:hover {
-    cursor: pointer;
-    background-color: pink;
-    color: black;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  
-    
-  }
-
-  .btn3{
-    background-color: rgba(0,0,0,.5);
-    color: #03e9f4;
-    height: 40px;
-    width: 50%;
-    //text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: .5s;
-  
-
-  }
-
-  .btn3:hover {
-    cursor: pointer;
-    background-color: red;
-    color: black;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-  }
-
-  .employee-info {
-    line-height: 1.4;
-  }
-
-
-
-  //edit form fields
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-
- 
-  .edit-form {
-    max-width: 600px; 
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-
-
-
-
-
-
-
-
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      padding-right: 20px;
+    }
+    .bar {
+      display: flex;
+    }
   `;
-
-
-
 
   static get properties() {
     return {
       employees: { type: Array },
       filteredEmployees: { type: Array },
-      editingUser: { type: Object },
-  
+      editingUser: { type: Number },
+      sortOption: { type: String },
     };
   }
 
@@ -346,103 +209,190 @@ class DataPage extends LitElement {
     this.employees = JSON.parse(localStorage.getItem("employees")) || [];
     this.filteredEmployees = [...this.employees];
     this.editingUser = null;
-
+    this.sortOption = "default";
   }
 
-  handleSearch(e) {
-    const query = e.target.value.toLowerCase();
+  handleSearch() {
+    const query = this.shadowRoot
+      .getElementById("search-input")
+      .value.toLowerCase();
     this.filteredEmployees = this.employees.filter(
-      emp => emp.fullName.toLowerCase().includes(query) || emp.employeeCode.toLowerCase().includes(query)
+      (emp) =>
+        emp.fullName.toLowerCase().includes(query) ||
+        emp.employeeCode.toLowerCase().includes(query)
     );
+    this.requestUpdate();
   }
 
-  
+  clearSearch() {
+    this.shadowRoot.getElementById("search-input").value = "";
+    this.filteredEmployees = [...this.employees];
+    this.requestUpdate();
+  }
 
+  handleSort(event) {
+    this.sortOption = event.target.value;
+    this.sortEmployees();
+  }
 
-  
+  sortEmployees() {
+    if (this.sortOption === "default") {
+      this.filteredEmployees = [...this.employees];
+    } else if (this.sortOption === "name") {
+      this.filteredEmployees = [...this.employees].sort((a, b) =>
+        a.fullName.localeCompare(b.fullName)
+      );
+    } else if (this.sortOption === "employeeCode") {
+      this.filteredEmployees = [...this.employees].sort((a, b) =>
+        a.employeeCode.localeCompare(b.employeeCode)
+      );
+    }
 
- 
+    this.requestUpdate();
+  }
 
-  // updateLocalStorageAndRefresh() {
-  //   localStorage.setItem("employees", JSON.stringify(this.employees));
-  //   this.filteredEmployees = [...this.employees];
-  // }
   render() {
     return html`
-    
-    <div id="data">
-    <h1>*Employee Data List*</h1>
-
-    <div id="search-bar">
-    <!--<label for="search-input">Search:</label>-->
-    <input type="text" placeholder="Search.." id="search-input" @input="${this.handleSearch}"/>
-    <button class="search" @click="${this.handleSearch}">X</button>
-    
-  </div>
-  
-    <div class="card-list">
-      ${this.employees.map((item,index) => html`
-      
-        <div class="card">
-          <div class="employee-info">
-            <p><strong>Full Name:</strong> ${item.fullName}</p>
-            <p><strong>Employee Code:</strong> ${item.employeeCode}</p>
-            <p><strong>Official Email Address:</strong> ${item.officialEmail}</p>
-            <p><strong>Personal Email Address:</strong> ${item.personalEmail}</p>
-            <p><strong>Designation:</strong> ${item.designation}</p>
-            <p><strong>Department:</strong> ${item.department}</p>
-          
-          <p><strong>Primary Number:</strong> ${item.primaryContact}</p>
-          <p><strong>Secondary Number:</strong> ${item.secondaryContact}</p>
-          <p><strong>Emergency Number:</strong> ${item.emergencyContact}</p>
-          <p><strong>Correspondence Address Line 1:</strong> ${item.caddressLine1}</p>
-          <p><strong>Correspondence Address Line 2:</strong> ${item.caddressLine2}</p>
-          <p><strong>Correspondence Landmark:</strong> ${item.clandMark}</p>
-          
-          <p><strong>Correspondence City:</strong> ${item.ccity}</p>
-          <p><strong>Correspondence State:</strong> ${item.cstate}</p>
-          <p><strong>Correspondence Country:</strong> ${item.ccountry}</p>
-          <p><strong>Correspondence Zip:</strong> ${item.czipCode}</p>
-          <p><strong>Permanent Address Line 1:</strong> ${item.paddressLine1}</p>
-          <p><strong>Permanent Address Line 2:</strong> ${item.paddressLine2}</p>
-          <p><strong>Permanent Landmark:</strong> ${item.plandMark}</p>
-          <p><strong>Permanent City:</strong> ${item.pcity}</p>
-          <p><strong>Permanent State:</strong> ${item.pstate}</p>
-          <p><strong>Permanent Country:</strong> ${item.pcountry}</p>
-          <p><strong>Permanent Zip:</strong> ${item.pzipCode}</p>
+      <div id="data">
+        <h1>*Employee Data List*</h1>
+        <div class="bar">
+          <div id="search-bar">
+            <input
+              type="text"
+              placeholder="Search.."
+              id="search-input"
+              @input="${this.handleSearch}"
+            />
+            <button class="clear" @click="${this.clearSearch}">Clear</button>
           </div>
-          <br><br>
-          <div id="sara">
-          
-          <button class="btn" @click="${() => this.editUser(index)}">Edit</button>
-            
-         
-          
-          <button class="btn1" @click="${() => this.deleteUser(index)}">Delete</button>
+
+          <div id="sort-bar">
+            <sl-select
+              pill
+              filled
+              placeholder="Sort by:"
+              id="sort-select"
+              @sl-change="${this.handleSort}"
+            >
+              <sl-option value="default">Default</sl-option>
+              <sl-option value="name">Name</sl-option>
+              <sl-option value="employeeCode">Employee Code</sl-option>
+            </sl-select>
           </div>
         </div>
-        ${this.editingUser === index
-           ? html`
-           <div class="overlay">
-           <div class="edit-form"> 
-          <nehu-3
-          .employees=${this.employees}
-          .editingUserIndex=${index}
-          @save-form=${this.handleSaveForm}
-        ></nehu-3>
 
+        <div class="card-list">
+          ${this.filteredEmployees.map(
+            (item, index) => html`
+              <div class="book">
+                <div class="back">
+                  <p>
+                    <strong>Correspondence Landmark:</strong>
+                    ${item.clandmark}
+                  </p>
+                  <p><strong>Correspondence City:</strong> ${item.ccity}</p>
+                  <p><strong>Correspondence State:</strong> ${item.cstate}</p>
+                  <p>
+                    <strong>Correspondence Country:</strong> ${item.ccountry}
+                  </p>
+                  <p><strong>Correspondence Zip:</strong> ${item.czipCode}</p>
+                  <p>
+                    <strong>Permanent Address 1:</strong>
+                    ${item.paddressLine1}
+                  </p>
+                  <p>
+                    <strong>Permanent Address 2:</strong>
+                    ${item.paddressLine2}
+                  </p>
+                  <p><strong>Permanent Landmark:</strong> ${item.plandmark}</p>
+                  <p><strong>Permanent City:</strong> ${item.pcity}</p>
+                  <p><strong>Permanent State:</strong> ${item.pstate}</p>
+                  <p><strong>Permanent Country:</strong> ${item.pcountry}</p>
+                  <p><strong>Permanent Zip:</strong> ${item.pzipCode}</p>
+                </div>
+
+                <div id="sara">
+                  <sl-button
+                    variant="success"
+                    class="btn"
+                    @click="${() => this.editUser(index)}"
+                  >
+                    Edit
+                  </sl-button>
+                  <sl-button
+                    variant="danger"
+                    class="btn1"
+                    @click="${() => this.deleteUser(index)}"
+                  >
+                    Delete
+                  </sl-button>
+                </div>
+
+                <div class="cover">
+                  <h2><strong>Full Name:</strong> ${item.fullName}</h2>
+                  <hr />
+                  <p><strong>Employee Code:</strong> ${item.employeeCode}</p>
+                  <p><strong>Official Email:</strong> ${item.officialEmail}</p>
+                  <p><strong>Personal Email:</strong> ${item.personalEmail}</p>
+                  <p><strong>Designation:</strong> ${item.designation}</p>
+                  <p><strong>Department:</strong> ${item.department}</p>
+                  <p><strong>Primary Number:</strong> ${item.pcontactNumber}</p>
+                  <p>
+                    <strong>Secondary Number:</strong> ${item.scontactNumber}
+                  </p>
+                  <p>
+                    <strong>Emergency Number:</strong> ${item.econtactNumber}
+                  </p>
+                  <h3>Address Details</h3>
+                  <hr />
+                  <p>
+                    <strong>Correspondence Address 1:</strong>
+                    ${item.caddressLine1}
+                  </p>
+                  <p>
+                    <strong>Correspondence Address 2:</strong>
+                    ${item.caddressLine2}
+                  </p>
+                </div>
+              </div>
+
+              ${this.editingUser === index
+                ? html`
+                    <div id="myNav" class="overlay active">
+                      <sl-button
+                        variant="text"
+                        size="large"
+                        class="close-btn"
+                        @click="${() => this.closeEditPage()}"
+                        >Close</sl-button
+                      >
+                      <div class="table-body">
+                        <nehu-3
+                          .employees=${this.employees}
+                          .editingUserIndex=${index}
+                          @save-form=${this.handleSaveForm}
+                        ></nehu-3>
+                      </div>
+                    </div>
+                  `
+                : ""}
+            `
+          )}
         </div>
-        </div>
-   
-            ` : ''}
-      `)}
-    </div>
-  </div>
-  
+      </div>
     `;
   }
+
   editUser(index) {
     this.editingUser = index;
+    const myNav = this.shadowRoot.getElementById("myNav");
+    myNav.classList.add("active");
+  }
+
+  closeEditPage() {
+    this.editingUser = null;
+    const myNav = this.shadowRoot.getElementById("myNav");
+    myNav.classList.remove("active");
   }
 
   deleteUser(index) {
@@ -452,27 +402,20 @@ class DataPage extends LitElement {
       localStorage.setItem("employees", JSON.stringify(this.employees));
       this.requestUpdate();
     }
+    window.location.reload();
   }
-
 
   handleSaveForm(event) {
     const { employees, index } = event.detail;
     if (index !== -1) {
-      
       this.employees[index] = employees;
     } else {
-     
       this.employees.push(employees);
     }
     localStorage.setItem("employees", JSON.stringify(this.employees));
     this.editingUser = null;
     this.requestUpdate();
   }
-  
-  
-  
-
-  
 }
 
-customElements.define('sara-1', DataPage );
+customElements.define("sara-1", DataPage);
